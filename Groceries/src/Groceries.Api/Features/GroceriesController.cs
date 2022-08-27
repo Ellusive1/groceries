@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Groceries.Api.Data.Entities;
+using Groceries.Api.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Groceries.Api.Features
 {
@@ -6,36 +8,39 @@ namespace Groceries.Api.Features
     [Route("Groceries")]
     public class GroceriesController : ControllerBase
     {
-        public static List<Grocery> Groceries = new List<Grocery>()
+
+
+        public GroceriesController(GroceryService groceryService)
         {
-            new Grocery()
-            {
-                Name = "Carottes",
-                Id = 1
-            },
-            new Grocery()
-            {
-                Name = "Pommes",
-                Id = 2
-            }
-        };
+            GroceryService = groceryService;
+        }
+
+        public GroceryService GroceryService { get; }
 
         [HttpGet]
         [Route("")]
         public List<Grocery> GetAll()
         {
- 
-
-            return Groceries;
+            return GroceryService.GetAll();
         }
 
         [HttpGet]
         [Route("{groceryId}")]
         public Grocery GetOne(int groceryId)
         {
-            var grocery = Groceries
+
+            var grocery = GroceryService.GetAll()
                 .Where(g => g.Id == groceryId)
                 .FirstOrDefault();
+
+            return grocery;
+        }
+
+        [HttpPost]
+        [Route("")]
+        public Grocery Create(string name)
+        {
+            var grocery = GroceryService.Create(name);
 
             return grocery;
         }

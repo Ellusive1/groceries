@@ -1,4 +1,4 @@
-﻿namespace Groceries.Api
+﻿namespace Groceries.Api.Data.Entities
 {
     public class Grocery
     {
