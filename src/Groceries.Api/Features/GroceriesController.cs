@@ -8,8 +8,6 @@ namespace Groceries.Api.Features
     [Route("Groceries")]
     public class GroceriesController : ControllerBase
     {
-
-
         public GroceriesController(GroceryService groceryService)
         {
             GroceryService = groceryService;
@@ -28,10 +26,7 @@ namespace Groceries.Api.Features
         [Route("{groceryId}")]
         public Grocery GetOne(int groceryId)
         {
-
-            var grocery = GroceryService.GetAll()
-                .Where(g => g.Id == groceryId)
-                .FirstOrDefault();
+            var grocery = GroceryService.Get(groceryId);
 
             return grocery;
         }
