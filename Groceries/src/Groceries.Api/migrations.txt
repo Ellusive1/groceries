@@ -1,0 +1,9 @@
+﻿# run from Groceries/Groceries/src/Groceries.Api #
+
+# create mirgation #
+
+ dotnet ef migrations add InitialMigration -o Data/Migrations
+
+# apply mirgation #
+
+dotnet ef database update

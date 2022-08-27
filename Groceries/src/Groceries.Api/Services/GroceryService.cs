@@ -15,7 +15,12 @@ namespace Groceries.Api.Services
         public List<Grocery> GetAll()
         {
             return GroceriesDbContext.Groceries.ToList();
-        }  
+        }
+
+        public Grocery Get(int id)
+        {
+            return GroceriesDbContext.Groceries.FirstOrDefault(g => g.Id == id);
+        }
 
         public Grocery Create(string name)
         {

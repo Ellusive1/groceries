@@ -11,5 +11,6 @@ namespace Groceries.Api.Data
         }
 
         public DbSet<Grocery> Groceries { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
